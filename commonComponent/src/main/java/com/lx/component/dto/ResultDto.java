@@ -25,44 +25,44 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonFilter("FB_UID_filter")
 public class ResultDto {
 
-    private String userName;
+	private String userName;
 
-    @JsonSerialize(using = CustomDate.class)
-    private Date registerDate;
+	@JsonSerialize(using = CustomDate.class)
+	private Date registerDate;
 
-    private Integer age;
-    private List<String> orders;
+	private Integer age;
+	private List<String> orders;
 
-    public String getUserName() {
-	return userName;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setUserName(String userName) {
-	this.userName = userName;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public Date getRegisterDate() {
-	return registerDate;
-    }
+	public Date getRegisterDate() {
+		return registerDate;
+	}
 
-    public void setRegisterDate(Date registerDate) {
-	this.registerDate = registerDate;
-    }
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
 
-    public Integer getAge() {
-	return age;
-    }
+	public Integer getAge() {
+		return age;
+	}
 
-    public void setAge(Integer age) {
-	this.age = age;
-    }
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 
-    public List<String> getOrders() {
-	return orders;
-    }
+	public List<String> getOrders() {
+		return orders;
+	}
 
-    public void setOrders(List<String> orders) {
-	this.orders = orders;
-    }
+	public void setOrders(List<String> orders) {
+		this.orders = orders;
+	}
 
 }

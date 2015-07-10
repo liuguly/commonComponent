@@ -24,17 +24,17 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 public class CustomDate extends JsonSerializer<Date> {
 
-    /**
-     * @see com.fasterxml.jackson.databind.JsonSerializer#serialize(java.lang.Object,
-     *      com.fasterxml.jackson.core.JsonGenerator,
-     *      com.fasterxml.jackson.databind.SerializerProvider)
-     */
+	/**
+	 * @see com.fasterxml.jackson.databind.JsonSerializer#serialize(java.lang.Object,
+	 *      com.fasterxml.jackson.core.JsonGenerator,
+	 *      com.fasterxml.jackson.databind.SerializerProvider)
+	 */
 
-    @Override
-    public void serialize(Date date, JsonGenerator jgen,
-	    SerializerProvider provider) throws IOException,
-	    JsonProcessingException {
-	jgen.writeString(date.toString());
-    }
+	@Override
+	public void serialize(Date date, JsonGenerator jgen,
+			SerializerProvider provider) throws IOException,
+			JsonProcessingException {
+		jgen.writeString(date.toString());
+	}
 
 }
