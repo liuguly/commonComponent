@@ -55,6 +55,10 @@ public class ImService4AndroidImpl implements ImService4Android{
 		this.listenerAdapter = listenerAdapter;
 	}
 	
+	@Override
+	public XMPPTCPConnection getXmpptcpConnection() {
+		return xmppConnectionManager4Android.getXmpptcpConnection();
+	}
 	
 class XMPPConnectionManager4Android {
 		
@@ -178,6 +182,9 @@ class XMPPConnectionManager4Android {
 			return transfer;
 		}
 		
+		public XMPPTCPConnection getXmpptcpConnection() {
+			return xmpptcpConnection;
+		}
 	}
 	
 }

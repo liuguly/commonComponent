@@ -1,6 +1,7 @@
 package com.jingchen.im;
 
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 
 import com.jingchen.im.listeneradapter.ListenerAdapter;
 
@@ -16,4 +17,6 @@ public interface ImService4Android {
 	public void sendVoice(String receiverJID,String voicePath,String description) throws Exception;
 	
 	public void addListener(ListenerAdapter listenerAdapter) ;
+	
+	public XMPPTCPConnection getXmpptcpConnection();
 }

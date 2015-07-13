@@ -2,7 +2,19 @@ package com.jingchen.im;
 
 import javax.naming.InitialContext;
 
+import org.jivesoftware.smack.SmackException.NoResponseException;
+import org.jivesoftware.smack.SmackException.NotConnectedException;
+import org.jivesoftware.smack.XMPPException.XMPPErrorException;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smackx.pubsub.AccessModel;
+import org.jivesoftware.smackx.pubsub.ConfigureForm;
+import org.jivesoftware.smackx.pubsub.Item;
+import org.jivesoftware.smackx.pubsub.ItemPublishEvent;
+import org.jivesoftware.smackx.pubsub.LeafNode;
+import org.jivesoftware.smackx.pubsub.PubSubManager;
+import org.jivesoftware.smackx.pubsub.PublishModel;
+import org.jivesoftware.smackx.pubsub.listener.ItemEventListener;
+import org.jivesoftware.smackx.xdata.packet.DataForm;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -59,6 +71,42 @@ public class MsgTest {
 		}
 		
 		Thread.sleep(2000);
+	}
+	
+	@Test
+	public void pubSubTest() throws NoResponseException, XMPPErrorException, NotConnectedException, InterruptedException{
+		PubSubManager mgr = new PubSubManager(imService4Android.getXmpptcpConnection());
+		
+		LeafNode leaf = mgr.createNode("d1");
+		ConfigureForm form = new ConfigureForm(DataForm.Type.submit);
+		form.setAccessModel(AccessModel.open);
+		form.setDeliverPayloads(false);
+		form.setNotifyRetract(true);
+		form.setPersistentItems(true);
+		form.setPublishModel(PublishModel.open);
+		form.setSubscribe(true);
+		leaf.sendConfigurationForm(form);
+		
+		Thread.sleep(1000);
+		
+		
+		PubSubManager mgr1 = new PubSubManager(imService4Android1.getXmpptcpConnection());
+		LeafNode leafNode = mgr1.getNode("d1");
+		
+		leafNode.addItemEventListener(new ItemEventListener<Item>() {
+			@Override
+			public void handlePublishedItems(ItemPublishEvent<Item> items) {
+				System.out.println(items.getItems().size());
+				
+			}
+		});
+		leafNode.subscribe("admin@jingchen/Smack");
+		
+		
+		Thread.sleep(1000);
+		leaf.send(new Item("123"));
+		Thread.sleep(200000);
+		
 	}
 	
 }
